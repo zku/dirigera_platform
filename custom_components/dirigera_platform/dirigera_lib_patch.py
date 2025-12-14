@@ -46,7 +46,12 @@ class HubX(Hub):
         print(f"get_motion_sensors(1): {devices}")
         sensors = list(filter(lambda x: x["deviceType"] in ("motionSensor", "occupancySensor"), devices))
         print(f"get_motion_sensors(2): {sensors}")
-        sensors = [x if 'isOn' in x else dict({"isOn": True}, **x) for x in sensors]
+        for i in range(len(sensors)):
+            x = sensors[i]
+            if "isOn" not in x["attributes"]:
+                x["attributes"]["isOn"] = True
+        logging.warning(f"get_motion_sensors(3): {sensors}")
+        logger.warning(f"get_motion_sensors(3): {sensors}")
         return [dict_to_motion_sensor(sensor, self) for sensor in sensors]
 
     def get_motion_sensor_by_id(self, id_: str) -> MotionSensor:
