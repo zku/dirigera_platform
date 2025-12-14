@@ -2,7 +2,7 @@
     "domain": "dirigera_platform_matter",
     "name": "IKEA Dirigera Hub Integration with new Matter device support",
     "after_dependencies": ["http"],
-    "codeowners": ["@zku"],
+    "codeowners": ["@sanjoyg", "@zku"],
     "config_flow": true,
     "documentation": "https://github.com/zku/dirigera_platform",
     "iot_class": "local_polling",
