@@ -49,7 +49,7 @@ class HubX(Hub):
         for i in range(len(sensors)):
             x = sensors[i]
             if "isOn" not in x["attributes"]:
-                x["attributes"]["isOn"] = True
+                x["attributes"]["isOn"] = False
         logging.warning(f"get_motion_sensors(3): {sensors}")
         logger.warning(f"get_motion_sensors(3): {sensors}")
         return [dict_to_motion_sensor(sensor, self) for sensor in sensors]
@@ -61,7 +61,7 @@ class HubX(Hub):
         if motion_sensor["deviceType"] not in ("motionSensor", "occupancySensor"):
             raise ValueError("Device is not an MotionSensor")
         if "isOn" not in motion_sensor["attributes"]:
-            motion_sensor["attributes"]["isOn"] = True
+            motion_sensor["attributes"]["isOn"] = False
         return dict_to_motion_sensor(motion_sensor, self)
 
     def get_scene_by_id(self, scene_id: str):
