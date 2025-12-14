@@ -30,7 +30,7 @@ PLATFORMS_TO_SETUP = [  Platform.SWITCH,
                         Platform.FAN,
                         Platform.SCENE]
 
-logger = logging.getLogger("custom_components.dirigera_platform_matter")
+logger = logging.getLogger("custom_components.dirigera_platform")
 
 # Validation of the user's configuration
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
