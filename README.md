@@ -1,5 +1,7 @@
 ## IKEA Dirigera Hub Integration
-This custom components help integrating HomeAssistant with the new IKEA Dirigera hub. This integration is a scaffolding on the great work done by Nicolas Hilberg  at https://github.com/Leggin/dirigera
+This is a fork from https://github.com/sanjoyg/dirigera_platform to add support for IKEA's new Matter devices.
+
+This custom components help integrating HomeAssistant with the new IKEA Dirigera hub. This integration is a scaffolding on the great work done by Nicolas Hilberg at https://github.com/Leggin/dirigera
 
 Supports
 * Lights

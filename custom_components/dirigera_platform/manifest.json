@@ -1,13 +1,13 @@
 {
-    "domain": "dirigera_platform",
-    "name": "IKEA Dirigera Hub Integration",
+    "domain": "dirigera_platform_matter",
+    "name": "IKEA Dirigera Hub Integration with new Matter device support",
     "after_dependencies": ["http"],
-    "codeowners": ["@sanjoyg"],
+    "codeowners": ["@zku"],
     "config_flow": true,
-    "documentation": "https://github.com/sanjoyg/dirigera_platform",
+    "documentation": "https://github.com/zku/dirigera_platform",
     "iot_class": "local_polling",
-    "issue_tracker": "https://github.com/sanjoyg/dirigera_platform",
-    "loggers": ["custom_components.dirigera_platform"],
-    "requirements": ["dirigera==1.2.1"],
-    "version": "0.0.1"
+    "issue_tracker": "https://github.com/zku/dirigera_platform",
+    "loggers": ["custom_components.dirigera_platform_matter"],
+    "requirements": ["git+https://github.com/zku/dirigera.git@main#dirigera==2.2.4"],
+    "version": "1.0.1"
 }
