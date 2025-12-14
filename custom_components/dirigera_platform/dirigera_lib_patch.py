@@ -43,9 +43,10 @@ class HubX(Hub):
         Fetches all motion sensors registered in the Hub
         """
         devices = self.get("/devices")
-        logger.debug(f"get_motion_sensors(1): {devices}")
+        print(f"get_motion_sensors(1): {devices}")
         sensors = list(filter(lambda x: x["deviceType"] in ("motionSensor", "occupancySensor"), devices))
-        logger.debug(f"get_motion_sensors(2): {sensors}")
+        print(f"get_motion_sensors(2): {sensors}")
+        sensors = [x if 'isOn' in x else dict({"isOn": True}, **x) for x in sensors]
         return [dict_to_motion_sensor(sensor, self) for sensor in sensors]
 
     def get_motion_sensor_by_id(self, id_: str) -> MotionSensor:
