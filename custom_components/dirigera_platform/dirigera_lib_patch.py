@@ -56,8 +56,12 @@ class HubX(Hub):
 
     def get_motion_sensor_by_id(self, id_: str) -> MotionSensor:
         motion_sensor = self._get_device_data_by_id(id_)
+        logging.warning(f"get_motion_sensor_by_id(1): {motion_sensor}")
+        logger.warning(f"get_motion_sensor_by_id(2): {motion_sensor}")
         if motion_sensor["deviceType"] not in ("motionSensor", "occupancySensor"):
             raise ValueError("Device is not an MotionSensor")
+        if "isOn" not in motion_sensor["attributes"]:
+            motion_sensor["attributes"]["isOn"] = True
         return dict_to_motion_sensor(motion_sensor, self)
 
     def get_scene_by_id(self, scene_id: str):
