@@ -19,6 +19,7 @@ DATE_TIME_FORMAT:str =  "%Y-%m-%dT%H:%M:%S.%fZ"
 
 process_events_from = {
     "motionSensor"    :     ["isDetected","isOn","batteryPercentage"],
+    "occupancySensor" :     ["isDetected","isOn","batteryPercentage"],
     "outlet"          :     [   "isOn",
                                 "currentAmps",
                                 "currentActivePower",

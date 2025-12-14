@@ -7,6 +7,8 @@ from dirigera import Hub
 from dirigera.devices.device import Attributes, Device
 from dirigera.hub.abstract_smart_home_hub import AbstractSmartHomeHub
 from dirigera.devices.scene import Info, Icon,  SceneType, Trigger, TriggerDetails, ControllerType
+from dirigera.devices.motion_sensor import MotionSensor, dict_to_motion_sensor
+
 import logging 
 
 logger = logging.getLogger("custom_components.dirigera_platform")
@@ -35,7 +37,23 @@ class HubX(Hub):
         #scenes = list(filter(lambda x: x["type"] == "scene", devices))
         
         return [HackScene.make_scene(self, scene) for scene in scenes]
-    
+
+    def get_motion_sensors(self) -> List[MotionSensor]:
+        """
+        Fetches all motion sensors registered in the Hub
+        """
+        devices = self.get("/devices")
+        logger.debug(f"get_motion_sensors(1): {devices}")
+        sensors = list(filter(lambda x: x["deviceType"] in ("motionSensor", "occupancySensor"), devices))
+        logger.debug(f"get_motion_sensors(2): {sensors}")
+        return [dict_to_motion_sensor(sensor, self) for sensor in sensors]
+
+    def get_motion_sensor_by_id(self, id_: str) -> MotionSensor:
+        motion_sensor = self._get_device_data_by_id(id_)
+        if motion_sensor["deviceType"] not in ("motionSensor", "occupancySensor"):
+            raise ValueError("Device is not an MotionSensor")
+        return dict_to_motion_sensor(motion_sensor, self)
+
     def get_scene_by_id(self, scene_id: str):
         """
         Fetches a specific scene by a given id
